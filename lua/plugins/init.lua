@@ -5,11 +5,6 @@ return {
 	"folke/which-key.nvim",
 	{ "folke/neoconf.nvim", cmd="Neoconf" },
 
-	{ "folke/trouble.nvim", config = function() 
-			require("trouble").setup { icons = false, } 
-		end 
-	},
-
 	"github/copilot.vim",
 	"laytan/cloak.nvim",
 	"nvim-lua/plenary.nvim",

@@ -4,7 +4,7 @@ return {
 	config = function()
 		require('nvim-treesitter.configs').setup({
 			-- Parser names
-			ensure_installed = { "vimdoc", "javascript", "typescript", "lua", "go" },
+			ensure_installed = { "vimdoc", "javascript", "typescript", "lua", "go", "java" },
 			sync_install = false,
 			auto_install = true,
 
