@@ -2,7 +2,6 @@ return {
 	"nvim-telescope/telescope.nvim",
 	dependencies = {
 		"nvim-lua/plenary.nvim",
-		"BurntSushi/ripgrep",
 	},
 	config = function()
 		local telescope = require("telescope").setup({})
