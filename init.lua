@@ -21,3 +21,15 @@ vim.api.nvim_create_autocmd('LspAttach', {
 		vim.keymap.set("i", "<C-h>", function() vim.lsp.buf.signature_help() end, opts)
 	end
 })
+
+vim.api.nvim_create_autocmd('BufWritePre', {
+	group = Beau,
+	callback = function(e)
+		if vim.bo.filetype == "go" then
+			-- Format/organize imports before saving
+			vim.lsp.buf.format()
+			vim.lsp.buf.code_action { context = { only = { 'source.organizeImports' } }, apply = true }
+			vim.lsp.buf.code_action { context = { only = { 'source.fixAll' } }, apply = true }
+		end
+	end
+})
