@@ -25,7 +25,8 @@ vim.api.nvim_create_autocmd('LspAttach', {
 vim.api.nvim_create_autocmd('BufWritePre', {
 	group = Beau,
 	callback = function(e)
-		if vim.bo.filetype == "go" then
+		local extensions = { go=true, ts=true, tsx=true, js=true, jsx=true, }
+		if extensions[vim.bo.filetype] then
 			-- Format/organize imports before saving
 			vim.lsp.buf.format()
 			vim.lsp.buf.code_action { context = { only = { 'source.organizeImports' } }, apply = true }
