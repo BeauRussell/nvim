@@ -5,7 +5,7 @@ return {
 	"folke/which-key.nvim",
 	{ "folke/neoconf.nvim", cmd="Neoconf" },
 
---	"github/copilot.vim",
+	"github/copilot.vim",
 	"laytan/cloak.nvim",
 	"nvim-lua/plenary.nvim",
 	{ "nvim-telescope/telescope.nvim", tag = '0.1.8', dependencies = { "nvim-lua/plenary.nvim" } },
