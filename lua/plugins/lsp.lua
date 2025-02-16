@@ -28,6 +28,7 @@ return {
 				"rust_analyzer",
 				"ts_ls",
 				"gopls",
+				"ols",
 			},
 			handlers = {
 				function(server_name) --default handler
