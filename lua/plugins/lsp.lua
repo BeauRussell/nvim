@@ -26,10 +26,9 @@ return {
 			ensure_installed = {
 				"lua_ls",
 				"rust_analyzer",
-				"ts_ls",
 				"gopls",
 				"ols",
-				"eslint-lsp",
+				"eslint",
 			},
 			handlers = {
 				function(server_name) --default handler
@@ -75,7 +74,7 @@ return {
 		})
 
 		vim.diagnostic.config({
-			update_in_insiert = true,
+			update_in_insert = true,
 			float = {
 				focusable = false,
 				style = "minimal",
