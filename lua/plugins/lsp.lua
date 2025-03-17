@@ -29,6 +29,7 @@ return {
 				"ts_ls",
 				"gopls",
 				"ols",
+				"eslint-lsp",
 			},
 			handlers = {
 				function(server_name) --default handler
