@@ -24,11 +24,35 @@ return {
 		require("mason").setup()
 		require("mason-lspconfig").setup({
 			ensure_installed = {
+				-- Lua
 				"lua_ls",
+				-- Rust
 				"rust_analyzer",
+				-- Go
 				"gopls",
+				-- Odin
 				"ols",
+				-- TypeScript/JavaScript
+				"ts_ls",
 				"eslint",
+				-- Java
+				"jdtls",
+				-- HTML
+				"html",
+				-- CSS
+				"cssls",
+				-- JSON
+				"jsonls",
+				-- YAML
+				"yamlls",
+				-- Bash
+				"bashls",
+				-- C
+				"clangd",
+				-- Markdown
+				"marksman",
+				-- Templ (Go templating)
+				"templ",
 			},
 			handlers = {
 				function(server_name) --default handler
@@ -66,10 +90,11 @@ return {
 			}),
 
 			sources = cmp.config.sources({
+				{ name = 'nvim_lsp' },
 				{ name = 'luasnip' },
-			},
-			{
+			}, {
 				{ name = 'buffer' },
+				{ name = 'path' },
 			}),
 		})
 
