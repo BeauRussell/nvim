@@ -5,7 +5,7 @@ vim.opt.shiftwidth = 4
 vim.g.mapleader = " "
 require("config.lazy")
 
-vim.api.nvim_create_augroup('Beau', {})
+local Beau = vim.api.nvim_create_augroup('Beau', {})
 
 vim.api.nvim_create_autocmd('LspAttach', {
 	group = Beau,
@@ -26,13 +26,39 @@ vim.api.nvim_create_autocmd('LspAttach', {
 vim.api.nvim_create_autocmd('BufWritePre', {
 	group = Beau,
 	callback = function(e)
-		local extensions = { go=true, ts=true, tsx=true, js=true, jsx=true, }
-		if extensions[vim.bo.filetype] then
-			-- Format/organize imports before saving
-			vim.lsp.buf.format()
-			vim.lsp.buf.code_action { context = { only = { 'source.organizeImports' } }, apply = true }
-			vim.lsp.buf.code_action { context = { only = { 'source.fixAll' } }, apply = true }
-			vim.cmd('EslintFixAll')
+		-- Map filetypes to whether they should be formatted
+		local format_filetypes = {
+			go = true,
+			typescript = true,
+			typescriptreact = true,
+			javascript = true,
+			javascriptreact = true,
+		}
+		local ft = vim.bo.filetype
+		if format_filetypes[ft] then
+			-- Format before saving
+			vim.lsp.buf.format({ async = false })
+
+			-- Organize imports (synchronous)
+			vim.lsp.buf.code_action({
+				context = { only = { 'source.organizeImports' } },
+				apply = true,
+			})
+		end
+
+		-- Only run EslintFixAll for JS/TS files when eslint is attached
+		local eslint_filetypes = {
+			typescript = true,
+			typescriptreact = true,
+			javascript = true,
+			javascriptreact = true,
+		}
+		if eslint_filetypes[ft] then
+			-- Check if eslint is actually attached before running
+			local clients = vim.lsp.get_clients({ bufnr = e.buf, name = "eslint" })
+			if #clients > 0 then
+				pcall(vim.cmd, 'EslintFixAll')
+			end
 		end
 	end
 })
