@@ -15,7 +15,7 @@ return {
 		local wanted_parsers = {
 			"jsdoc", "vimdoc", "javascript", "typescript", "lua",
 			"go", "java", "odin", "templ", "markdown", "markdown_inline",
-			"html", "css", "json", "yaml", "bash", "c",
+			"html", "css", "json", "yaml", "bash", "c", "comment",
 		}
 
 		-- Custom command to install all wanted parsers
